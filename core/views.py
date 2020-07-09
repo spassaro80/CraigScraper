@@ -3,15 +3,6 @@ from django.views.generic.base import TemplateView
 from bs4 import BeautifulSoup
 import requests
 
-class HomePageView(TemplateView):
-    template_name =  "core/home.html"
-    def get(self, request, *args, **kwargs): 
-        return render(request, self.template_name, {'title': "Questa é la Prima Web di Stefano basata in Class Based Views"})
-
-class SamplePageView(TemplateView):
-    template_name =  "core/sample.html"
-    def get(self, request, *args, **kwargs): 
-        return render(request, self.template_name)
 
 def index(request):
     return render(request, 'core/index.html' )
