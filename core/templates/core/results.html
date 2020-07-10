@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Results</title>
     {% load static %}
-    <!-- Fuentes -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
-    <!-- Estilos -->
+    <!-- Styles -->
     <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'core/css/main.css' %}" rel="stylesheet">
   </head>
 
-    <!-- Results -->
+    <!-- Header -->
     <header class="masthead" style="background-image: url('https://source.unsplash.com/UxQO710yie4')">
     <div class="overlay"></div>
     <div class="container">
@@ -29,20 +29,12 @@
     </div>
   </header>
 
-      <!-- Contenido -->
+      <!-- Content -->
  <body>
-
-  <h1>Results!!</h1>
-  <h2>Input 1 : {{input1}}</h2>
-  <h2>Input 2 : {{input2}}</h2>
-  <h2>Input 3 : {{input3}}</h2>
-  <h2>Results : {{result1}}</h2>
-  <h2>Urls Searched :    {{links}}</h2>
-  <h2>Results :    {{result4}}</h2>
-  <h2>Results :    {{products}}</h2>
- 
   
   <div class="container-fluid">
+
+    <!--Rendering resuls founded as a table -->
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <h5 class="text-center mb-4">Summary </h5>
@@ -68,56 +60,25 @@
             </tbody>
         </table>  
       </div>
-    </div>
-    <div class="row">    
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <h5 class="text-center mb-4">Urls Scraped </h5>
-          {%for link in links%}
-          <div class="d-flex">
-            <div class="p-3 mb-2 bg-info text-white">{{link}}</div>
-          </div>
-          {%endfor%}
-      </div>
-    </div>
-
-    <div class="row">    
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <h5 class="text-center mb-4">Results Founded </h5>
-          {%for result in result4%}
-              {%for row in result %}
-              <div class="d-flex">
-               <div class="p-3 mb-2 bg-success text-white">{{row}}</div>
-              </div>
-              {%endfor%}
-            {%endfor%}
-      </div>
-    </div>
-
-<!--How to render a dictionary -->
-    <div class="row">    
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <h5 class="text-center mb-4">Dictionary </h5>
-          {%for key,value in dictionary.items %}
-              <div class="d-flex">
-               <div class="p-3 mb-2 bg-success text-white">{{key}} and {{value}}</div>
-              </div>
-          {%endfor%}
-      </div>
-    </div>
-</div>
-<!--Rendering results as a dictionary -->
+    </div>   
+    <!--Rendering results as a dictionary -->
     <div class="row">    
       <div class="col-lg-8 col-md-10 mx-auto">
         <h5 class="text-center mb-4">Dictionary </h5>
           {%for key,value in products.items %}
               <div class="d-flex">
-               <div class="p-3 mb-2 bg-success text-white">{{key}} and {{value}}</div>
-              </div>
+               <div class="p-3 mb-2 bg-success text-white">{{key}} </div>
+              </div> 
+                {% for val in value%}
+                <div class="d-flex">
+                  <div class="p-3 mb-2 bg-info text-white">{{val}} </div>
+                </div>
+                {% endfor%}
+
           {%endfor%}
       </div>
     </div>
 </div>
-
       <!-- Javascript -->
       <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
       <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
