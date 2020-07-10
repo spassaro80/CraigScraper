@@ -12,6 +12,8 @@
     <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'core/css/main.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core/js/main.js' %}"></script>
   </head>
 
     <!-- Header -->
@@ -50,7 +52,7 @@
               </tr>
               </thead>
             <tbody>
-              {%for col in result1%}
+              {%for col in result_table%}
               <tr>
               {%for row in col%}
                 <td>{{row}}</td>
@@ -65,13 +67,13 @@
     <div class="row">    
       <div class="col-lg-8 col-md-10 mx-auto">
         <h5 class="text-center mb-4">Results </h5>
-          {%for key,value in products.items %}
+          {%for key,value in url_results.items %}
               <div class="d-flex flex-column">
-               <div class="p-3 mb-2 bg-success text-white">{{key}} </div>
+               <div class="p-3 mb-2 bg-success text-white title">{{key}} </div>
               </div> 
                 {% for val in value%}
                 <div class="d-flex flex-column">
-                  <div class="p-3 mb-2 bg-info text-white">{{val}} </div>
+                  <div class="p-3 mb-2 bg-info text-white result">{{val}} </div>
                 </div>
                 {% endfor%}
 
@@ -98,9 +100,30 @@
 
 
 </div>
-      <!-- Javascript -->
+
+  </body>
+
+<script>
+  $(document).ready(function(){
+console.log( "ready!" );
+var titles = document.querySelectorAll(".title");
+var results = document.querySelectorAll(".result");
+for (i=0; i<titles.length; i++) {
+    titles[i].addEventListener("click", function(){
+        for (i=0; i<results.length; i++) {
+            if (results[i].style.display ==""){
+                results[i].style.display = "none";
+            }
+            else {
+                results[i].style.display = "";
+            }
+        };
+    });    
+};
+});
+</script>
+        <!-- Javascript -->
       <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
       <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'core/js/main.js' %}"></script>
-  </body>
 </html>

@@ -25,27 +25,27 @@ def bones_scraper(request):
     urls = []
 
     # Pubmed get number of results for each search
-    result1 = [ [] for j in range(len(list_2)) ]
+    result_table = [ [] for j in range(len(list_2)) ]
     for j in range(len(list_2)):
-        result1[j].append(list_2[j])
+        result_table[j].append(list_2[j])
     for i,rows in enumerate(combined_list_search_terms):
         for j,columns in enumerate(rows):
-            url = 'https://pubmed.ncbi.nlm.nih.gov/?term=fracture+' + columns + '+%28autograft+OR+autogenous+OR+autologous%29&filter=species.humans&filter=language.english&size=200'
+            url = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + columns + '+%28autograft+OR+autogenous+OR+autologous%29&filter=species.humans&filter=language.english&size=200'
             urls.append(url)
             data = requests.get(url)
             soup = BeautifulSoup(data.text, 'lxml')
             match = soup.find('span', class_="value")
             if match is not None:
-                result1[i].append(int(match.text))
+                result_table[i].append(int(match.text))
             else:
-                result1[i].append(0)
+                result_table[j].append(0)
 
 
-    products = {}
+    url_results = {}
 
     for i,url in enumerate(urls):
         data = requests.get(urls[i])
-        products[urls[i]] = []
+        url_results[urls[i]] = []
         soup = BeautifulSoup(data.text, 'lxml')
         match = soup.findAll('a', class_="labs-docsum-title")
         num = soup.find('span', class_="value")
@@ -55,10 +55,10 @@ def bones_scraper(request):
             count = int(num.text)
         for m in match[0:int(count)]:
             if m.text is not None:
-                products[urls[i]].append(m.text.strip())
+                url_results[urls[i]].append(m.text.strip())
 
 
-    context = {'input1' : list_1, 'input2' : list_2, 'input3': input3, 'result1': result1, 'links': urls, 'products': products} 
+    context = {'input1' : list_1, 'result_table': result_table, 'links': urls, 'url_results': url_results} 
     return render(request, 'core/results.html', context)
 
     # The output of the console is a set of 15 numbers corresponding to the 15 searches (5x3 variables in each list)
