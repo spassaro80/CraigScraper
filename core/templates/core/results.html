@@ -64,13 +64,13 @@
     <!--Rendering results as a dictionary -->
     <div class="row">    
       <div class="col-lg-8 col-md-10 mx-auto">
-        <h5 class="text-center mb-4">Dictionary </h5>
+        <h5 class="text-center mb-4">Results </h5>
           {%for key,value in products.items %}
-              <div class="d-flex">
+              <div class="d-flex flex-column">
                <div class="p-3 mb-2 bg-success text-white">{{key}} </div>
               </div> 
                 {% for val in value%}
-                <div class="d-flex">
+                <div class="d-flex flex-column">
                   <div class="p-3 mb-2 bg-info text-white">{{val}} </div>
                 </div>
                 {% endfor%}
