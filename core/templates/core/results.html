@@ -39,7 +39,8 @@
   <h2>Results : {{result1}}</h2>
   <h2>Urls Searched :    {{links}}</h2>
   <h2>Results :    {{result4}}</h2>
-
+  <h2>Results :    {{products}}</h2>
+ 
   
   <div class="container-fluid">
     <div class="row">
@@ -89,6 +90,30 @@
               </div>
               {%endfor%}
             {%endfor%}
+      </div>
+    </div>
+
+<!--How to render a dictionary -->
+    <div class="row">    
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h5 class="text-center mb-4">Dictionary </h5>
+          {%for key,value in dictionary.items %}
+              <div class="d-flex">
+               <div class="p-3 mb-2 bg-success text-white">{{key}} and {{value}}</div>
+              </div>
+          {%endfor%}
+      </div>
+    </div>
+</div>
+<!--Rendering results as a dictionary -->
+    <div class="row">    
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h5 class="text-center mb-4">Dictionary </h5>
+          {%for key,value in products.items %}
+              <div class="d-flex">
+               <div class="p-3 mb-2 bg-success text-white">{{key}} and {{value}}</div>
+              </div>
+          {%endfor%}
       </div>
     </div>
 </div>

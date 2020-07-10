@@ -22,7 +22,7 @@
       <div class="row text-center">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1 class="heading text-center"> CraigList Scraper</h1>
+            <h1 class="heading text-center"> Bones Scraper</h1>
             <span class="subheading text-center">A funny scraper!!!</span>
           </div>
         </div>
@@ -34,12 +34,12 @@
   
       <!-- Content -->
   <h1>Enter your search term here</h1>
-  <form action = "{% url 'scraper' %}" method="post">{% csrf_token %}
+  <form action = "{% url 'bones_scraper' %}" method="post">{% csrf_token %}
   <div class="form-group" >
     <label for="input1">Search term</label>
-    <input type="text" class="form-control" id="input1" name="input1" placeholder="Enter search terms separated by commas">
+    <input type="text" class="form-control" id="input1" name="input1" placeholder="Enter bones separated by commas">
     <label for="input2">Search term</label>
-    <input type="text" class="form-control" id="input2" name="input2" placeholder="Enter search terms separated by commas">
+    <input type="text" class="form-control" id="input2" name="input2" placeholder="Enter osteobiogenics terms separated by commas">
     <label for="input3">Rest of search</label>
     <input type="text" class="form-control" id="input3" name="input3" placeholder="Enter search terms separated by '+' ">
   </div>
