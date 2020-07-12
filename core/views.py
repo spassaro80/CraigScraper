@@ -25,9 +25,18 @@ def bones_scraper(request):
     urls = []
 
     # Pubmed get number of results for each search
+
+    #Create an empty table of 2 dimensions. N of columns will be = nº search terms of input2
+
     result_table = [ [] for j in range(len(list_2)) ]
+    
+    #For every row, the first element will be the name of search term of input 1
+    
     for j in range(len(list_2)):
         result_table[j].append(list_2[j])
+
+    #Loop for every element of the table and populate with the nº of result
+
     for i,rows in enumerate(combined_list_search_terms):
         for j,columns in enumerate(rows):
             url = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + columns + '+' + static_search_terms + '+%28autograft+OR+autogenous+OR+autologous%29&filter=species.humans&filter=language.english&size=200'
@@ -41,6 +50,9 @@ def bones_scraper(request):
                 result_table[i].append(0)
 
 
+    #url_results will be a dictionary where the keys are the urls scraped and the values will be arrays. Each array has the results of the urls scraped.
+    # For example: if we have url1 and url2, with 2 and 1 result scraped, the dictionary will be:
+    # url_results = {'url1' :[result1_url1, result1_url1], 'url2' : [result1_url2] }
     url_results = {}
 
     for i,url in enumerate(urls):
