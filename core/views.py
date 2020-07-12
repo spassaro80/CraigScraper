@@ -30,7 +30,7 @@ def bones_scraper(request):
         result_table[j].append(list_2[j])
     for i,rows in enumerate(combined_list_search_terms):
         for j,columns in enumerate(rows):
-            url = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + columns + '+%28autograft+OR+autogenous+OR+autologous%29&filter=species.humans&filter=language.english&size=200'
+            url = 'https://pubmed.ncbi.nlm.nih.gov/?term=' + columns + '+' + static_search_terms + '+%28autograft+OR+autogenous+OR+autologous%29&filter=species.humans&filter=language.english&size=200'
             urls.append(url)
             data = requests.get(url)
             soup = BeautifulSoup(data.text, 'lxml')
@@ -38,7 +38,7 @@ def bones_scraper(request):
             if match is not None:
                 result_table[i].append(int(match.text))
             else:
-                result_table[j].append(0)
+                result_table[i].append(0)
 
 
     url_results = {}
